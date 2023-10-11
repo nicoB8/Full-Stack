@@ -11,6 +11,13 @@ function Issues() {
             })
     }, []);
 
+    const deleteIssue = (issueId) => {
+        axios.delete("http://127.0.0.1:5000/deleteIssue")
+            .then((response) => {
+                setIssues(issues.filter((issue) => issue.id !== issueId));
+            })
+    }
+
     return (
         <div>
             <h1>Issues</h1>
@@ -20,6 +27,7 @@ function Issues() {
                         <li key={issue.id}>
                             <h3>{issue.title}</h3>
                             <p>{issue.description}</p>
+                            <button onClick={() => deleteIssue(issue.id)}>Delete</button>
                         </li>
                     ))}
                 </ul>
