@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request
 from issue_operations import is_issue_in_list, create, read, update, delete
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/createIssue", methods=['POST'])
 def createApi():
